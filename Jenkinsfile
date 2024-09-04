@@ -1,11 +1,15 @@
 //Declarative script
 pipeline {
-    agent { docker { image 'maven:3.6.3' } } //which agent to use
+    agent any //which agent to use
     stages {
         stage('Build') {
             steps {
-                sh 'mvn --version'
                 echo 'Build'
+                echo "$PATH"
+                echo "BUILD_NUMBER - $env.BUILD_NUMBER"
+                echo "$env.BUILD_ID"
+                echo "$enc.JOB_NAME"
+                echo "$env.BUILD_TAG"
             }
         }
 
