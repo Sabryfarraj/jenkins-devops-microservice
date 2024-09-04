@@ -23,7 +23,7 @@ pipeline{
 			always{
 				echo "i am smart"
 			}
-			sucess{
+			success{
 				echo "runned succesfuly"
 			}
 			failure{
