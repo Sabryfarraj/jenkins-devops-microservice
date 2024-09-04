@@ -19,7 +19,7 @@ pipeline {
             }
         }
 
-        stage('compile') {
+        stage('Compile') {
             steps {
                 sh 'mvn clean compile'
             }
@@ -32,7 +32,7 @@ pipeline {
         }
         stage('Integration Test') {
             steps {
-                sh 'mvn failsafe:integration test'
+                sh 'mvn failsafe:integration test failsafe:verify'
             }
         }
     }
