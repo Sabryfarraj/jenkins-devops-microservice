@@ -19,9 +19,9 @@ pipeline {
             }
         }
 
-        stage('Compile and Install') {
+        stage('Compile') {
             steps {
-                sh 'mvn clean install' // Perform a clean install
+                sh 'mvn clean compile' // Perform a clean install
             }
         }
 
