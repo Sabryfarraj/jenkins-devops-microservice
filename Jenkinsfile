@@ -18,6 +18,7 @@ pipeline{
 			echo "Integration Test"
 			}
 		}
+	}
 		post{
 			always{
 				echo "i am smart"
@@ -29,6 +30,4 @@ pipeline{
 				echo "failed!!"
 			}
 		}
-
-	}
 }
