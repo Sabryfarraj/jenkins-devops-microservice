@@ -1,8 +1,15 @@
 pipeline {
     agent any // which agent to use
+    enviroment {
+        dockerHome = tool 'myDocker'
+        mavenHome = tool 'mymaven'
+        PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
+    }
     stages {
         stage('Build') {
             steps {
+                sh 'maven --version'
+                sh 'docker version'
                 echo 'Build'
                 echo "PATH - $PATH"
                 echo "BUILD_NUMBER - $env.BUILD_NUMBER"
