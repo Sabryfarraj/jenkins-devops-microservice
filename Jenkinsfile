@@ -1,5 +1,5 @@
 pipeline {
-    agent any // which agent to use
+    agent any
     environment {
         dockerHome = tool 'myDocker'
         mavenHome = tool 'mymaven'
@@ -8,8 +8,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                sh 'mvn --version' // Corrected command to 'mvn'
-                sh 'docker version'
+                sh 'mvn --version' // Verify Maven version
+                sh 'docker version' // Verify Docker version
                 echo 'Build'
                 echo "PATH - ${env.PATH}"
                 echo "BUILD_NUMBER - ${env.BUILD_NUMBER}"
@@ -19,20 +19,21 @@ pipeline {
             }
         }
 
-        stage('Compile') {
+        stage('Compile and Install') {
             steps {
-                sh 'mvn clean compile'
+                sh 'mvn clean install' // Perform a clean install
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                sh 'mvn test' // Run tests
             }
         }
+
         stage('Integration Test') {
             steps {
-                sh 'mvn failsafe:integration test failsafe:verify'
+                sh 'mvn failsafe:integration-test failsafe:verify' // Run integration tests
             }
         }
     }
